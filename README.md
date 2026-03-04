@@ -1,6 +1,6 @@
 # 💰 Budget Tracker
 
-A clean, dark-themed budget tracking web app built with **HTML**, **Tailwind CSS**, and **vanilla JavaScript**.
+A clean, dark themed budget tracking web app built with **HTML**, **Tailwind CSS**, and **vanilla JavaScript**.
 
 ---
 
