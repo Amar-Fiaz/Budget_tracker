@@ -1,0 +1,236 @@
+/* ─── CSS Variables ──────────────────────────────────── */
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --border: #1e1e2e;
+  --income: #00e5a0;
+  --expense: #ff4d6d;
+  --accent: #7b61ff;
+  --text: #e8e8f0;
+  --muted: #55556a;
+}
+
+/* ─── Base ───────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(123,97,255,0.15), transparent);
+}
+
+.mono {
+  font-family: 'DM Mono', monospace;
+}
+
+/* ─── Balance Card ───────────────────────────────────── */
+.balance-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16162a 100%);
+  border: 1px solid rgba(123,97,255,0.3);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.balance-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(123,97,255,0.2), transparent 70%);
+  border-radius: 50%;
+}
+
+/* ─── Stat Chips ─────────────────────────────────────── */
+.stat-income {
+  background: rgba(0,229,160,0.08);
+  border: 1px solid rgba(0,229,160,0.2);
+}
+
+.stat-expense {
+  background: rgba(255,77,109,0.08);
+  border: 1px solid rgba(255,77,109,0.2);
+}
+
+/* ─── Form Inputs ────────────────────────────────────── */
+input,
+select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 14px;
+  width: 100%;
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+}
+
+input::placeholder {
+  color: var(--muted);
+}
+
+select option {
+  background: #1a1a2e;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ─── Type Toggle Buttons ────────────────────────────── */
+.type-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+
+.type-btn.active-income {
+  background: rgba(0,229,160,0.12);
+  border-color: var(--income);
+  color: var(--income);
+}
+
+.type-btn.active-expense {
+  background: rgba(255,77,109,0.12);
+  border-color: var(--expense);
+  color: var(--expense);
+}
+
+/* ─── Add Button ─────────────────────────────────────── */
+.add-btn {
+  background: linear-gradient(135deg, var(--accent), #5b3fff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.add-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.add-btn:active {
+  transform: translateY(0);
+}
+
+/* ─── Transaction Item ───────────────────────────────── */
+.tx-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  animation: slideIn 0.3s ease;
+}
+
+.tx-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn {
+  opacity: 0;
+  background: rgba(255,77,109,0.1);
+  border: none;
+  color: var(--expense);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: opacity 0.2s;
+  font-family: 'DM Mono', monospace;
+}
+
+.delete-btn:hover {
+  background: rgba(255,77,109,0.2);
+}
+
+/* ─── Filter Chips ───────────────────────────────────── */
+.filter-chip {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Syne', sans-serif;
+  transition: all 0.2s;
+}
+
+.filter-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* ─── Bar Chart ──────────────────────────────────────── */
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* ─── Animations ─────────────────────────────────────── */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
